@@ -14,6 +14,19 @@ class Directorios extends Migration
     public function up()
     {
         //
+        Schema::create('registros',function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();
+            $table->text('url');
+            $table->string('user');
+            $table->string('pasword');
+            $table->integer('status');
+            $table->text('description');
+            $table->integer('users_id')->unsigned();
+            $table->foreign('users_id')->references('id')->on('users');
+
+            $table->timestamps();
+        } );
     }
 
     /**
