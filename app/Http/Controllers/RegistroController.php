@@ -100,6 +100,13 @@ class RegistroController extends Controller
      */
     public function update(Request $request, Registro $registro)
     {
+        $request->validate([
+            'name' =>'required',
+            'description' => 'required',
+            'url' => 'required',
+            'user'=> 'required',
+            'pasword'=> 'required'
+            ]);
         //
         $registro->name = $request->name;
         $registro->url = $request->url;
