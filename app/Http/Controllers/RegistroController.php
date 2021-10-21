@@ -16,7 +16,7 @@ class RegistroController extends Controller
     {
         //
         
-        $registros = Registro::orderby('id','desc')->paginate();
+        $registros = Registro::orderby('id','desc')->paginate(10);
         return view('registros.index',compact('registros'));
 
     }
@@ -127,8 +127,11 @@ class RegistroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Registro $registro)
     {
         //
+        $registro->delete();
+        $registros=Registro::orderby('id','desc')->paginate(10);
+        return redirect()->route('registros.index');
     }
 }

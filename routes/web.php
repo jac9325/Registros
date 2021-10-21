@@ -17,10 +17,16 @@ use App\Http\Controllers\RegistroController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('registros',[RegistroController::class,'index'])->name('registros.index');
+/*Route::get('registros',[RegistroController::class,'index'])->name('registros.index');
 Route::get('registros/create',[RegistroController::class,'create'])->name('registros.create');
 Route::get('registros/{id}',[RegistroController::class,'show'])->name('registros.show');
 
 Route::post('registros',[RegistroController::class,'store'])->name('registros.store');
 Route::get('registros/{id}/edit', [RegistroController::class,'edit'])->name('registros.edit');
 Route::put('registros/{registro}',[RegistroController::class,'update'])->name('registros.update');
+*/
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::delete('registros/{registro}',[RegistroController::class,'destroy'])->name('registros.destroy');
+Route::resource('registros',RegistroController::class);
